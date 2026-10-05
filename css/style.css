@@ -66,6 +66,7 @@ h1, h2, h3, h4, h5, h6 {
 .text-charcoal { color: var(--color-charcoal) !important; }
 .text-ivory { color: var(--color-ivory) !important; }
 .text-stone { color: var(--color-stone) !important; }
+.text-white { color: #FFFFFF !important; }
 .hover-ivory:hover { color: var(--color-ivory) !important; transition: var(--transition-fast); }
 
 .section-padding {
@@ -112,6 +113,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 .small-label.border-dark {
     border-color: var(--color-charcoal);
+}
+.small-label.border-white {
+    border-color: rgba(255, 255, 255, 0.5);
 }
 
 /* Buttons */
@@ -541,99 +545,76 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ========================================================
-   SANITARY WARE EXPERIENCE
+   SANITARY WARE EXPERIENCE (UPDATED TO PICTURE)
    ======================================================== */
-.bathroom-concept-box {
+.bathroom-image-box {
     position: relative;
     width: 100%;
     height: 60vh;
     min-height: 400px;
     background-color: var(--color-beige);
-    display: flex;
-    justify-content: center;
-    align-items: center;
     border: 1px solid var(--color-stone);
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.concept-element {
+.bath-img {
     position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Stable continuous slow zoom animation */
+    animation: slowPan 25s ease-in-out infinite alternate;
+    transform-origin: center center;
 }
 
-.concept-shape {
-    background-color: var(--color-white);
-    box-shadow: 0 10px 30px rgba(26,28,30,0.08);
-    position: relative;
-    z-index: 2;
-    transition: var(--transition-med);
-    border: 1px solid rgba(26,28,30,0.05);
+@keyframes slowPan {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.15); }
 }
 
-.concept-tub .concept-shape {
-    width: 300px; height: 120px;
-    border-radius: 5px 5px 60px 60px;
-}
-.concept-tub { bottom: 10%; left: 50%; transform: translateX(-50%); }
-
-.concept-faucet .concept-shape {
-    width: 15px; height: 80px;
-    border-radius: 10px 10px 0 0;
-    background-color: var(--color-bronze);
-}
-.concept-faucet { bottom: calc(10% + 120px); left: 50%; transform: translateX(-50%); }
-
-.concept-wall-tile .concept-shape {
-    width: 120px; height: 200px;
-    background-color: var(--color-stone);
-}
-.concept-wall-tile { top: 15%; left: 20%; }
-
-.concept-popout {
+.bath-overlay {
     position: absolute;
-    background: var(--color-charcoal);
-    color: var(--color-ivory);
-    padding: 0.75rem 1.25rem;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(26,28,30,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: 0;
-    z-index: 1;
     transition: var(--transition-med);
-    white-space: nowrap;
-    pointer-events: none;
+    z-index: 2;
 }
 
-.concept-element:hover .concept-shape {
-    transform: scale(0.95);
-    box-shadow: 0 5px 15px rgba(26,28,30,0.15);
+.bathroom-image-box:hover .bath-overlay {
+    opacity: 1;
 }
 
-.concept-tub:hover .concept-popout {
-    opacity: 1;
-    transform: translate(110%, -50%);
-    top: 50%; right: 0;
+.bath-overlay-content {
+    text-align: center;
+    transform: translateY(20px);
+    transition: var(--transition-med);
 }
-.concept-faucet:hover .concept-popout {
-    opacity: 1;
-    transform: translate(-120%, -50%);
-    top: 50%; left: 0;
-}
-.concept-wall-tile:hover .concept-popout {
-    opacity: 1;
-    transform: translate(0, 110%);
-    bottom: 0; left: 0;
+
+.bathroom-image-box:hover .bath-overlay-content {
+    transform: translateY(0);
 }
 
 .pop-label {
-    display: block;
-    font-size: 0.65rem;
-    letter-spacing: 0.15em;
-    opacity: 0.8;
-    margin-bottom: 0.25rem;
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    opacity: 0.9;
+    margin-bottom: 0.5rem;
     font-weight: 500;
 }
 .pop-value {
     display: block;
     font-family: var(--font-serif);
-    font-size: 1.125rem;
-    color: var(--color-tertiary); /* Accent text */
+    font-size: clamp(2rem, 4vw, 3rem);
 }
 
 /* ========================================================
@@ -875,16 +856,6 @@ h1, h2, h3, h4, h5, h6 {
     }
     .material-panel:hover .panel-info {
         transform: translate(-50%, -50%) scale(1) !important;
-    }
-    
-    .concept-tub .concept-shape { width: 200px; height: 80px; }
-    .concept-faucet .concept-shape { height: 60px; }
-    .concept-wall-tile .concept-shape { width: 80px; height: 120px; }
-    .concept-tub:hover .concept-popout,
-    .concept-faucet:hover .concept-popout,
-    .concept-wall-tile:hover .concept-popout {
-        transform: translate(-50%, -150%);
-        top: 0; left: 50%;
     }
 }
 
