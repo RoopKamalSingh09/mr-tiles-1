@@ -1,0 +1,902 @@
+/* ========================================================
+   CSS VARIABLES & COLOR SYSTEM
+   ======================================================== */
+   :root {
+    --color-charcoal: #1B1A18;
+    --color-charcoal-alt: #141311; /* Slightly darker for footers/depth */
+    --color-ivory: #F4F1EB;
+    --color-stone: #B8B0A4;
+    --color-beige: #D9D1C5;
+    --color-dark-stone: #777168;
+    --color-bronze: #96775A;
+    --color-white: #FFFFFF;
+
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'DM Sans', sans-serif;
+
+    --transition-slow: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    --transition-med: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    --transition-fast: all 0.3s ease;
+}
+
+/* ========================================================
+   GLOBAL STYLES
+   ======================================================== */
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: var(--font-sans);
+    color: var(--color-charcoal);
+    background-color: var(--color-ivory);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+}
+
+.font-italic {
+    font-style: italic;
+}
+
+/* Utility Colors */
+.bg-charcoal { background-color: var(--color-charcoal) !important; }
+.bg-ivory { background-color: var(--color-ivory) !important; }
+.bg-stone { background-color: var(--color-stone) !important; }
+.bg-beige { background-color: var(--color-beige) !important; }
+.bg-dark-stone { background-color: var(--color-dark-stone) !important; }
+.bg-bronze { background-color: var(--color-bronze) !important; }
+.bg-1b1a18 { background-color: #151413 !important; } /* Footer specific */
+
+.text-charcoal { color: var(--color-charcoal) !important; }
+.text-ivory { color: var(--color-ivory) !important; }
+.text-stone { color: var(--color-stone) !important; }
+.hover-ivory:hover { color: var(--color-ivory) !important; transition: var(--transition-fast); }
+
+.section-padding {
+    padding-top: clamp(5rem, 10vw, 9rem);
+    padding-bottom: clamp(5rem, 10vw, 9rem);
+}
+
+/* Typography Classes */
+.editorial-heading {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+.editorial-heading-small {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.2;
+}
+
+.editorial-text {
+    font-family: var(--font-sans);
+    font-size: clamp(1.125rem, 2vw, 1.5rem);
+    font-weight: 300;
+    line-height: 1.6;
+    max-width: 800px;
+}
+
+.editorial-text-small {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+.small-label {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    border-bottom: 1px solid var(--color-stone);
+    padding-bottom: 0.25rem;
+    display: inline-block;
+}
+.small-label.border-dark {
+    border-color: var(--color-charcoal);
+}
+
+/* Buttons */
+.btn-primary-custom {
+    background-color: var(--color-ivory);
+    color: var(--color-charcoal);
+    border: 1px solid var(--color-ivory);
+    border-radius: 0;
+    padding: 1rem 2rem;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.875rem;
+    transition: var(--transition-fast);
+}
+
+.btn-primary-custom:hover {
+    background-color: transparent;
+    color: var(--color-ivory);
+}
+
+.bg-ivory .btn-primary-custom {
+    background-color: var(--color-charcoal);
+    color: var(--color-ivory);
+    border-color: var(--color-charcoal);
+}
+.bg-ivory .btn-primary-custom:hover {
+    background-color: transparent;
+    color: var(--color-charcoal);
+}
+
+.btn-outline-custom {
+    background-color: transparent;
+    color: var(--color-ivory);
+    border: 1px solid var(--color-ivory);
+    border-radius: 0;
+    padding: 1rem 2rem;
+    font-family: var(--font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.875rem;
+    transition: var(--transition-fast);
+}
+.btn-outline-custom:hover {
+    background-color: var(--color-ivory);
+    color: var(--color-charcoal);
+}
+.bg-charcoal .btn-primary-custom {
+    background-color: var(--color-ivory);
+    color: var(--color-charcoal);
+    border-color: var(--color-ivory);
+}
+
+.link-arrow {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 0.25rem;
+    transition: var(--transition-fast);
+    display: inline-block;
+}
+.link-arrow:hover {
+    opacity: 0.7;
+}
+
+/* ========================================================
+   NAVIGATION
+   ======================================================== */
+.custom-nav {
+    padding: 1.5rem 0;
+    transition: var(--transition-med);
+    background: transparent;
+}
+
+.custom-nav.scrolled {
+    background: rgba(27, 26, 24, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(244, 241, 235, 0.1);
+}
+
+.brand-monogram {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    color: var(--color-ivory);
+    line-height: 1;
+    border: 1px solid var(--color-ivory);
+    padding: 0.25rem 0.5rem;
+}
+
+.brand-text {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--color-ivory);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    line-height: 1.2;
+}
+
+.custom-nav .nav-link {
+    color: var(--color-ivory);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 1rem;
+    position: relative;
+    transition: var(--transition-fast);
+}
+
+.custom-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-ivory);
+    transition: var(--transition-fast);
+}
+
+.custom-nav .nav-link:hover::after {
+    width: 100%;
+}
+.custom-nav .nav-link:hover {
+    color: var(--color-white);
+}
+
+.nav-phone {
+    color: var(--color-ivory);
+    text-decoration: none;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    transition: var(--transition-fast);
+}
+.nav-phone:hover {
+    color: var(--color-stone);
+}
+
+.custom-toggler {
+    border-color: rgba(244, 241, 235, 0.5);
+}
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28244, 241, 235, 1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* ========================================================
+   HERO SECTION
+   ======================================================== */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    display: flex;
+    align-items: flex-end;
+    color: var(--color-ivory);
+    overflow: hidden;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+    transform: scale(1.05); /* For load animation */
+    transition: transform 2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.loaded .hero-bg {
+    transform: scale(1);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to bottom, rgba(27,26,24,0.3) 0%, rgba(27,26,24,0.7) 100%);
+    z-index: 2;
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 3;
+}
+
+.hero-title {
+    font-size: clamp(3rem, 7vw, 6rem);
+    line-height: 1.05;
+    margin-bottom: 0;
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    font-weight: 300;
+    opacity: 0.9;
+}
+
+.architectural-line {
+    width: 1px;
+    height: 80px;
+    background-color: rgba(244, 241, 235, 0.4);
+}
+
+.hero-location address {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+/* ========================================================
+   COLLECTIONS SECTION
+   ======================================================== */
+.collection-card {
+    display: block;
+    position: relative;
+    color: var(--color-ivory);
+    text-decoration: none;
+    overflow: hidden;
+    height: 100%;
+    min-height: 400px;
+    transition: var(--transition-slow);
+}
+.collection-card:hover {
+    color: var(--color-white);
+}
+
+.card-large { min-height: 600px; }
+.card-medium { min-height: 600px; margin-top: 4rem; } /* Asymmetry */
+
+.card-img-wrapper {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.card-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(27,26,24,0.4);
+    transition: var(--transition-med);
+}
+
+.collection-card:hover .card-img {
+    transform: scale(1.05);
+}
+.collection-card:hover .card-overlay {
+    background: rgba(27,26,24,0.2);
+}
+
+.card-content {
+    position: relative;
+    z-index: 2;
+    padding: 3rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: var(--transition-med);
+}
+
+.collection-card:hover .card-content {
+    transform: translateY(-8px);
+}
+
+.card-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    top: 3rem; left: 3rem; right: 3rem;
+    font-family: var(--font-sans);
+}
+
+.card-number {
+    font-size: 1rem;
+    font-weight: 300;
+}
+.card-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-bottom: 1px solid currentColor;
+}
+
+.card-title {
+    font-size: clamp(2rem, 3vw, 3rem);
+    margin-bottom: 1rem;
+}
+.card-desc {
+    font-size: 1rem;
+    font-weight: 300;
+    max-width: 80%;
+    opacity: 0.8;
+}
+
+.card-link {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: inline-block;
+    transition: var(--transition-fast);
+}
+.collection-card:hover .card-link {
+    transform: translateX(5px);
+}
+
+/* ========================================================
+   INTERACTIVE MATERIAL WALL
+   ======================================================== */
+.interactive-wall-container {
+    position: relative;
+    height: 70vh;
+    min-height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+}
+
+.material-panel {
+    position: absolute;
+    width: clamp(200px, 20vw, 300px);
+    aspect-ratio: 3/4;
+    transition: transform 0.1s linear; /* Fast for JS mouse move */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+.panel-visual {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    transition: var(--transition-med);
+}
+
+.material-panel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.panel-1 { z-index: 3; left: 20%; top: 10%; transform: rotate(-5deg); }
+.panel-2 { z-index: 4; left: 50%; top: 20%; transform: translateX(-50%); }
+.panel-3 { z-index: 5; right: 20%; top: 30%; transform: rotate(3deg); }
+.panel-img { z-index: 1; left: 40%; top: 5%; width: clamp(250px, 25vw, 400px); aspect-ratio: 4/5; filter: grayscale(20%); opacity: 0.8;}
+
+.panel-info {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+    background: var(--color-white);
+    padding: 1rem 1.5rem;
+    z-index: 1; /* Behind visual */
+    opacity: 0;
+    transition: var(--transition-med);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    white-space: nowrap;
+    border: 1px solid var(--color-beige);
+}
+
+.material-panel:hover .panel-visual {
+    transform: scale(0.95);
+}
+
+.material-panel:hover .panel-info {
+    opacity: 1;
+    z-index: 10;
+}
+/* Specific directional popouts */
+.panel-1:hover .panel-info { transform: translate(-120%, -50%) scale(1); }
+.panel-2:hover .panel-info { transform: translate(-50%, -120%) scale(1); }
+.panel-3:hover .panel-info { transform: translate(20%, -50%) scale(1); }
+
+.info-label {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    color: var(--color-dark-stone);
+    margin-bottom: 0.25rem;
+}
+.info-value {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    color: var(--color-charcoal);
+}
+
+/* ========================================================
+   HARDWOOD FLOORING
+   ======================================================== */
+.h-100-vh-50 {
+    height: 100%;
+    min-height: 50vh;
+}
+.split-content-pad {
+    padding: clamp(3rem, 8vw, 8rem);
+}
+
+/* ========================================================
+   SANITARY WARE EXPERIENCE
+   ======================================================== */
+.bathroom-concept-box {
+    position: relative;
+    width: 100%;
+    height: 60vh;
+    min-height: 400px;
+    background-color: var(--color-beige);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--color-stone);
+    overflow: hidden;
+}
+
+.concept-element {
+    position: absolute;
+}
+
+.concept-shape {
+    background-color: var(--color-white);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    position: relative;
+    z-index: 2;
+    transition: var(--transition-med);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.concept-tub .concept-shape {
+    width: 300px; height: 120px;
+    border-radius: 5px 5px 60px 60px;
+}
+.concept-tub { bottom: 10%; left: 50%; transform: translateX(-50%); }
+
+.concept-faucet .concept-shape {
+    width: 15px; height: 80px;
+    border-radius: 10px 10px 0 0;
+    background-color: var(--color-bronze);
+}
+.concept-faucet { bottom: calc(10% + 120px); left: 50%; transform: translateX(-50%); }
+
+.concept-wall-tile .concept-shape {
+    width: 120px; height: 200px;
+    background-color: var(--color-stone);
+}
+.concept-wall-tile { top: 15%; left: 20%; }
+
+.concept-popout {
+    position: absolute;
+    background: var(--color-charcoal);
+    color: var(--color-ivory);
+    padding: 0.75rem 1.25rem;
+    opacity: 0;
+    z-index: 1;
+    transition: var(--transition-med);
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+.concept-element:hover .concept-shape {
+    transform: scale(0.95);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.concept-tub:hover .concept-popout {
+    opacity: 1;
+    transform: translate(110%, -50%);
+    top: 50%; right: 0;
+}
+.concept-faucet:hover .concept-popout {
+    opacity: 1;
+    transform: translate(-120%, -50%);
+    top: 50%; left: 0;
+}
+.concept-wall-tile:hover .concept-popout {
+    opacity: 1;
+    transform: translate(0, 110%);
+    bottom: 0; left: 0;
+}
+
+.pop-label {
+    display: block;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    opacity: 0.7;
+    margin-bottom: 0.25rem;
+}
+.pop-value {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+}
+
+
+/* ========================================================
+   MATERIAL INDEX
+   ======================================================== */
+.index-list {
+    border-top: 1px solid rgba(244, 241, 235, 0.2);
+}
+
+.index-row {
+    display: flex;
+    align-items: center;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(244, 241, 235, 0.2);
+    color: var(--color-ivory);
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-fast);
+}
+
+.index-row:hover {
+    color: var(--color-charcoal);
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+.index-num {
+    font-size: 1rem;
+    font-weight: 300;
+    width: 60px;
+    position: relative;
+    z-index: 2;
+}
+
+.index-title {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    margin-bottom: 0;
+    flex-grow: 1;
+    position: relative;
+    z-index: 2;
+}
+
+.index-desc {
+    font-size: 1rem;
+    font-weight: 300;
+    opacity: 0.7;
+    margin-right: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.index-arrow {
+    font-size: 1.5rem;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s;
+}
+
+.index-row:hover .index-arrow {
+    transform: rotate(45deg);
+}
+
+.index-hover-bg {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    z-index: 1;
+    transition: var(--transition-med);
+}
+.index-row:hover .index-hover-bg {
+    opacity: 1; /* For images */
+}
+/* If it's a solid color bg, we just ensure it overlays */
+.index-row:hover .bg-stone { opacity: 1; }
+.index-row:hover .bg-bronze { opacity: 1; }
+.index-row:hover .bg-white { opacity: 1; }
+
+
+/* ========================================================
+   SHOWROOM SECTION
+   ======================================================== */
+.framed-image {
+    position: relative;
+    padding: 2rem;
+}
+.framed-image::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 2rem; bottom: 2rem;
+    border: 1px solid var(--color-stone);
+    z-index: 0;
+}
+.framed-image img {
+    position: relative;
+    z-index: 1;
+    box-shadow: 20px 20px 40px rgba(0,0,0,0.05);
+}
+
+.location-details {
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* ========================================================
+   STATEMENT SECTION
+   ======================================================== */
+.statement-section {
+    padding: clamp(8rem, 15vw, 12rem) 0;
+}
+.statement-text {
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+
+/* ========================================================
+   CONTACT CTA
+   ======================================================== */
+.contact-info-grid {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    border-top: 1px solid rgba(244, 241, 235, 0.2);
+    flex-wrap: wrap;
+}
+.info-block {
+    text-align: center;
+}
+.info-title {
+    display: block;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    color: var(--color-stone);
+    margin-bottom: 0.5rem;
+}
+.info-data {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+}
+
+/* ========================================================
+   FOOTER
+   ======================================================== */
+.site-footer {
+    padding: 5rem 0 2rem;
+}
+.footer-nav a {
+    color: var(--color-stone);
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.05em;
+    transition: var(--transition-fast);
+}
+.footer-nav a:hover {
+    color: var(--color-ivory);
+}
+
+/* ========================================================
+   ANIMATIONS & UTILITIES
+   ======================================================== */
+.reveal {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Fade Up */
+.reveal.fade-up {
+    transform: translateY(40px);
+    transition: opacity 1s ease, transform 1s cubic-bezier(0.25, 1, 0.5, 1), visibility 1s ease;
+}
+.reveal.fade-up.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* Slide Left */
+.reveal.slide-left {
+    transform: translateX(-40px);
+    transition: opacity 1s ease, transform 1s cubic-bezier(0.25, 1, 0.5, 1), visibility 1s ease;
+}
+.reveal.slide-left.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+}
+
+/* Scale Up */
+.reveal.scale-up {
+    transform: scale(0.95);
+    transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), visibility 1.2s ease;
+}
+.reveal.scale-up.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+}
+
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
+.delay-3 { transition-delay: 0.6s; }
+.delay-4 { transition-delay: 0.8s; }
+
+/* ========================================================
+   MOBILE RESPONSIVE TWEAKS
+   ======================================================== */
+@media (max-width: 991.98px) {
+    .custom-nav {
+        background: var(--color-charcoal);
+        padding: 1rem 0;
+    }
+    .custom-nav .nav-link {
+        margin: 1rem 0;
+        display: inline-block;
+    }
+    .card-medium {
+        margin-top: 0; /* Remove asymmetry on mobile */
+    }
+    .card-header-flex {
+        top: 2rem; left: 2rem; right: 2rem;
+    }
+    .card-content {
+        padding: 2rem;
+    }
+    
+    /* Interactive Wall Mobile */
+    .interactive-wall-container {
+        flex-direction: column;
+        height: auto;
+        gap: 2rem;
+        padding: 2rem 0;
+    }
+    .material-panel {
+        position: relative;
+        left: auto !important; right: auto !important; top: auto !important;
+        transform: none !important;
+        width: 80%;
+        margin: 0 auto;
+    }
+    .material-panel:hover .panel-info {
+        transform: translate(-50%, -50%) scale(1) !important;
+    }
+    
+    /* Bathroom Mobile */
+    .concept-tub .concept-shape { width: 200px; height: 80px; }
+    .concept-faucet .concept-shape { height: 60px; }
+    .concept-wall-tile .concept-shape { width: 80px; height: 120px; }
+    .concept-tub:hover .concept-popout,
+    .concept-faucet:hover .concept-popout,
+    .concept-wall-tile:hover .concept-popout {
+        transform: translate(-50%, -150%);
+        top: 0; left: 50%;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+    .index-row:hover {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .index-row:hover .index-arrow {
+        transform: none; /* Keep simple on mobile touch */
+    }
+    .w-mobile-100 {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+    .contact-info-grid {
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
