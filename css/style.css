@@ -486,7 +486,6 @@ h1, h2, h3, h4, h5, h6 {
 .panel-1 { z-index: 3; left: 20%; top: 10%; transform: rotate(-5deg); }
 .panel-2 { z-index: 4; left: 50%; top: 20%; transform: translateX(-50%); }
 .panel-3 { z-index: 5; right: 20%; top: 30%; transform: rotate(3deg); }
-.panel-img { z-index: 1; left: 40%; top: 5%; width: clamp(250px, 25vw, 400px); aspect-ratio: 4/5; filter: grayscale(20%); opacity: 0.8;}
 
 .panel-info {
     position: absolute;
